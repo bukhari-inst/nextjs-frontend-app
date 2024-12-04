@@ -3,6 +3,7 @@ import Image from 'next/image';
 import localFont from 'next/font/local';
 import styles from '@/styles/Home.module.css';
 import Button from '@/components/atoms/Button';
+import Link from 'next/link';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -16,6 +17,8 @@ const geistMono = localFont({
 });
 
 export default function Home() {
+  const products = [1, 2, 3];
+
   return (
     <>
       <Head>
@@ -65,12 +68,23 @@ export default function Home() {
             </a>
             <a
               href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
               rel="noopener noreferrer"
               className={styles.secondary}
             >
               Read our docs
             </a>
+            <Link href={'/about'}>About</Link>
+            <Link href={'/about/detail/123'}>About Detail</Link>
+            <div>
+              <h1>Daftar Produk</h1>
+              <ul>
+                {products.map((id) => (
+                  <li key={id}>
+                    <Link href={`/product/${id}`}>Lihat Produk {id}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </main>
         <footer className={styles.footer}>
